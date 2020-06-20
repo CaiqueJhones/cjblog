@@ -32,7 +32,7 @@ export default {
    ** Customize the progress-bar color
    */
   loading: {
-    color: '#5a46ff',
+    color: '#017785',
     height: '3px'
   },
   /*
@@ -50,7 +50,8 @@ export default {
   */
  buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxtjs/eslint-module'
+    '@nuxtjs/eslint-module',
+    ['@nuxtjs/google-analytics', {id: 'UA-46646162-4'}]
   ],
   /*
    ** Nuxt.js modules

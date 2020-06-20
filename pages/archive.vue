@@ -3,9 +3,15 @@
     <div class="banner-image">
       <img src="~/assets/images/books.jpg" alt="Sobre">
     </div>
+    <header class="post-header">
+      <h1 class="post-title">Arquivos do blog</h1>
+      <p class="post-meta">
+        <span class="categories"></span>
+      </p>
+    </header>
     <article class="post-content">
       <ul v-for="(arc, i) in Object.entries(archives)" :key="i">
-        <h5>{{ arc[0] }}</h5>
+        <h4>{{ arc[0] }}</h4>
         <li v-for="(post, j) in arc[1]" :key="j">
           <nuxt-link :to="`/blog/${post.link}`">{{ post.title }}</nuxt-link>
         </li>

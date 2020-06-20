@@ -7,7 +7,7 @@
         <div class="container">
           <div class="header-logo">
             <nuxt-link to="/">
-              <img src="~/assets/images/logo.png" alt="Logo" />
+              <img src="~/assets/images/new-logo.png" alt="Logo" />
             </nuxt-link>
           </div>
           <div class="header-title">
