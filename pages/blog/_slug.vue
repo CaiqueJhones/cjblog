@@ -121,9 +121,15 @@ export default {
         { name: 'author', content: 'Caique Oliveira' },
         { name: "description", property: "og:description", content: this.metaDescription, hid: "description" },
         { property: "og:title", content: this.browserTitle },
-        { property: "og:image", content: this.ogImage },
+        { property: "og:type", content: 'article' },
+        { property: "og:image", content: `${process.env.baseUrl}${this.ogImage}` },
+        { property: "og:url", content: `${process.env.baseUrl}/blog/${this.slug}` },
+        { property: "og:site_name", content: 'Caique Oliveira Blog' },
+        { name: "twitter:card", content: 'summary' },
+        { name: "twitter:url", content: `${process.env.baseUrl}/blog/${this.slug}` },
+        { name: "twitter:title", content: this.browserTitle },
         { name: "twitter:description", content: this.metaDescription },
-        { name: "twitter:image", content: this.ogImage }
+        { name: "twitter:image", content: `${process.env.baseUrl}${this.ogImage}` }
       ]
     }
   }

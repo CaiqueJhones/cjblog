@@ -1,8 +1,8 @@
 {
   "name": "cjblog",
   "version": "1.0.0",
-  "description": "Blog sobre programação",
-  "author": "Caique Jhones",
+  "description": "Blog sobre programação com tutoriais, artigos e bate papo sobre as novidades do mundo de desenvolvimento.",
+  "author": "Caique Oliveira",
   "private": true,
   "scripts": {
     "lint": "eslint --ext .ts,.js,.vue --ignore-path .gitignore .",

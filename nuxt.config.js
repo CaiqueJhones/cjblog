@@ -2,6 +2,8 @@ import path from 'path'
 import fs from 'fs'
 
 const posts = fs.readdirSync('./posts')
+const title = 'Caique Oliveira Blog'
+const baseUrl = process.env.NODE_ENV === 'production' ? 'https://caiquejh.com.br' : 'http://localhost:3000'
 
 export default {
   /*
@@ -10,13 +12,14 @@ export default {
   env: {
     posts,
     disqus: 'cjhonesblog',
-    baseUrl: process.env.NODE_ENV === 'production' ? 'https://caiquejh.com.br' : 'http://localhost:3000'
+    title,
+    baseUrl
   },
   /*
    ** Headers of the page
    */
   head: {
-    title: 'Caique Oliveira Blog',
+    title,
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -24,7 +27,17 @@ export default {
         hid: 'description',
         name: 'description',
         content: process.env.npm_package_description || ''
-      }
+      },
+      { name: 'author', content: 'Caique Oliveira' },
+      { property: "og:title", content: title },
+      { property: "og:type", content: 'blog' },
+      { property: "og:image", content: `${baseUrl}/new-logo.png` },
+      { property: "og:url", content: baseUrl },
+      { property: "og:site_name", content: title },
+      { name: "twitter:card", content: 'summary' },
+      { name: "twitter:url", content: baseUrl },
+      { name: "twitter:title", content: title },
+      { name: "twitter:description", content: process.env.npm_package_description },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
