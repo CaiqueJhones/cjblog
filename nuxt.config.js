@@ -95,7 +95,7 @@ export default {
     fallback: true,
     routes: posts.map(post => {
       const name = post.split('.')[0]
-      return `/${name}`
+      return `/blog/${name}`
     })
   }
 }
