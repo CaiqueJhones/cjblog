@@ -94,8 +94,6 @@ O operador `~` inverte a entrada, ou seja, se a entrada for 1 o resultado é 0, 
 | a | ~a  |
 |:-:|:---:|
 | 0 |  1  |
-| 0 |  1  |
-| 1 |  0  |
 | 1 |  0  |
 
 Exemplo,

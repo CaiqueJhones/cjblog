@@ -1,7 +1,7 @@
 <template>
   <div class="author">
     <nuxt-link to="/about">
-      <img src="~/assets/images/myAvatar.png" alt="Caique Oliveira" width="60" height="60">
+      <img src="/myAvatar.png" alt="Caique Oliveira" width="60" height="60">
     </nuxt-link>
     <h5>Autor</h5>
     <h6>

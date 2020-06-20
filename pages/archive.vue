@@ -1,7 +1,7 @@
 <template>
   <div class="post">
     <div class="banner-image">
-      <img src="~/assets/images/books.jpg" alt="Sobre">
+      <img src="/books.jpg" alt="Sobre">
     </div>
     <header class="post-header">
       <h1 class="post-title">Arquivos do blog</h1>

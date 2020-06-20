@@ -1,6 +1,6 @@
 <template>
   <div id="sidebar" class="sidebar">
-    <img src="~/assets/images/myAvatar.png" alt="Caique Oliveira" />
+    <img src="/myAvatar.png" alt="Caique Oliveira" />
 
     <div class="sidebar-info">
       <p>

@@ -1,7 +1,7 @@
 <template>
   <div class="post">
     <div v-if="bannerImage" class="banner-image">
-      <img :src="require(`~/assets/images/${bannerImage}`)" :alt="bannerAlt">
+      <img :src="ogImage" :alt="bannerAlt">
     </div>
     <div v-else-if="bannerVideo" class="banner_video">
       {{ bannerVideo }}
@@ -68,6 +68,7 @@ export default {
       categories: attr.categories,
       browserTitle: attr.browser_title,
       metaDescription: attr.meta_description,
+      comments: attr.comments,
       renderFunc: fileContent.vue.render,
       staticRenderFuncs: fileContent.vue.staticRenderFns
     }
@@ -89,14 +90,16 @@ export default {
     },
     ogImage() {
       if (this.bannerImage) {
-        return require(`~/assets/images/${this.bannerImage}`)
+        return `/${this.bannerImage}`
       }
       return ''
     }
   },
   mounted() {
     this.isMounted = true
-    this.disqus()
+    if (this.comments) {
+      this.disqus()
+    }
   },
   methods: {
     format(date) {
@@ -114,22 +117,18 @@ export default {
   head() {
     return {
       title: this.browserTitle,
-      htmlAttrs: {
-        lang: 'pt_BR',
-      },
       meta: [
-        { name: 'author', content: 'Caique Oliveira' },
-        { name: "description", property: "og:description", content: this.metaDescription, hid: "description" },
-        { property: "og:title", content: this.browserTitle },
-        { property: "og:type", content: 'article' },
-        { property: "og:image", content: `${process.env.baseUrl}${this.ogImage}` },
-        { property: "og:url", content: `${process.env.baseUrl}/blog/${this.slug}` },
-        { property: "og:site_name", content: 'Caique Oliveira Blog' },
-        { name: "twitter:card", content: 'summary' },
-        { name: "twitter:url", content: `${process.env.baseUrl}/blog/${this.slug}` },
-        { name: "twitter:title", content: this.browserTitle },
-        { name: "twitter:description", content: this.metaDescription },
-        { name: "twitter:image", content: `${process.env.baseUrl}${this.ogImage}` }
+        { hid: 'description', name: 'description', property: 'og:description', content: this.metaDescription },
+        { hid: 'og:title', property: 'og:title', content: this.browserTitle },
+        { hid: 'og:type', property: 'og:type', content: 'article' },
+        { hid: 'og:image', property: 'og:image', content: `${process.env.baseUrl}${this.ogImage}` },
+        { hid: 'og:url', property: 'og:url', content: `${process.env.baseUrl}/blog/${this.slug}` },
+        { hid: 'og:site_name', property: 'og:site_name', content: 'Caique Oliveira Blog' },
+        { hid: 'twitter:card', name: 'twitter:card', content: 'summary' },
+        { hid: 'twitter:url', name: 'twitter:url', content: `${process.env.baseUrl}/blog/${this.slug}` },
+        { hid: 'twitter:title', name: 'twitter:title', content: this.browserTitle },
+        { hid: 'twitter:description', name: 'twitter:description', content: this.metaDescription },
+        { hid: 'twitter:image', name: 'twitter:image', content: `${process.env.baseUrl}${this.ogImage}` }
       ]
     }
   }

@@ -3,7 +3,7 @@
     <div class="posts">
       <article v-for="(post, index) in pagedPosts" :key="index" class="post">
         <div v-if="post.banner_image" class="banner-image">
-          <img :src="require(`~/assets/images/${post.banner_image}`)" :alt="`${post.title}`"/>
+          <img :src="`/${post.banner_image}`" :alt="`${post.title}`"/>
         </div>
 
         <h1 class="post-title">
@@ -47,8 +47,8 @@
 </template>
 <script>
 import { compareDesc, format } from 'date-fns'
-export default {
 
+export default {
   asyncData() {
     async function asyncImport(post) {
       const md = await import(`~/posts/${post}`)
