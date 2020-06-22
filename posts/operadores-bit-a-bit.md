@@ -152,7 +152,7 @@ Exemplo,
 
 ```java
 int a = 3 // 0011 (em binário)
-System.out.println(a >> 1); // desloca 1 bit à esquerda e exibe o resultado 6
+System.out.println(a << 1); // desloca 1 bit à esquerda e exibe o resultado 6
 
 << 0011
 -------
