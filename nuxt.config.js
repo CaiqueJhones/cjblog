@@ -26,6 +26,7 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { name: 'google-site-verification' , content: 'EHjg_hRVN9Qq1mFCgsJ43XqKddrER9YmdaH-B2ZsHak' },
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' },
       { hid: 'author', name: 'author', content: 'Caique Oliveira' },
       { hid: 'og:title', property: 'og:title', content: title },
