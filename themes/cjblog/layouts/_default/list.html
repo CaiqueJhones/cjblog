@@ -1,0 +1,41 @@
+{{ define "main" }}
+<div class="container">
+  <header class="page-header">
+    <p class="page-header__eyebrow">
+      {{ if eq .Kind "taxonomy" }}Categoria{{ else if eq .Kind "term" }}{{ .Title }}{{ else }}Arquivo{{ end }}
+    </p>
+    <h1 class="page-header__title">{{ .Title }}</h1>
+    {{ with .Description }}<p class="page-header__desc">{{ . }}</p>{{ end }}
+  </header>
+
+  <div class="posts-grid">
+    {{ range .Pages }}
+    <article class="post-card reveal">
+      {{ with .Params.banner_image }}
+      <img src="/images/{{ . }}" alt="{{ $.Title }}" class="post-card__banner" loading="lazy" />
+      {{ else }}
+      <div class="post-card__banner-placeholder"></div>
+      {{ end }}
+      <div class="post-card__body">
+        <div class="post-card__meta">
+          <time class="post-card__date" datetime="{{ .Date.Format "2006-01-02" }}">
+            {{ .Date.Format "02 Jan 2006" }}
+          </time>
+          {{ range .Params.categories }}
+          <a href="/categories/{{ . | urlize }}/" class="badge badge--mauve">{{ . }}</a>
+          {{ end }}
+        </div>
+        <h2 class="post-card__title">{{ .Title }}</h2>
+        <p class="post-card__desc">{{ .Description }}</p>
+        <div class="post-card__footer">
+          <a href="{{ .RelPermalink }}" class="post-card__read">Ler artigo →</a>
+          {{ with .ReadingTime }}
+          <span style="font-size:.72rem;color:var(--fg-subtle);font-family:var(--font-mono)">{{ . }} min</span>
+          {{ end }}
+        </div>
+      </div>
+    </article>
+    {{ end }}
+  </div>
+</div>
+{{ end }}

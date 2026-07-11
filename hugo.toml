@@ -1,0 +1,57 @@
+baseURL = "https://caiquejh.com.br/"
+locale = "pt-BR"
+title = "Caique Oliveira Blog"
+theme = "cjblog"
+enableRobotsTXT = true
+enableEmoji = true
+pygmentsUseClasses = true
+pygmentsCodeFences = true
+paginate = 10
+copyright = "© 2026 Caique Oliveira"
+
+[sitemap]
+  changefreq = "monthly"
+  priority   = 0.5
+  filename   = "sitemap.xml"
+
+[outputs]
+  home    = ["HTML", "RSS", "JSON"]
+  section = ["HTML", "RSS"]
+  page    = ["HTML"]
+
+[permalinks]
+  blog = "/blog/:slug/"
+
+[services]
+  [services.googleAnalytics]
+    ID = "UA-46646162-4"
+
+[params]
+  author      = "Caique Oliveira"
+  description = "Blog pessoal sobre o universo da computação, engenharia de software e boas práticas."
+  avatar      = "/images/myAvatar.png"
+  disqus      = "cjhonesblog"
+  googleVerification = "EHjg_hRVN9Qq1mFCgsJ43XqKddrER9YmdaH-B2ZsHak"
+  ogImage     = "https://caiquejh.com.br/images/og-default.png"
+  twitterSite = "@caiquejhoones"
+
+  [params.social]
+    github   = "https://github.com/CaiqueJhones"
+    linkedin = "https://www.linkedin.com/in/caique-jhones"
+    twitter  = "https://twitter.com/caiquejhoones"
+
+[taxonomies]
+  category = "categories"
+  tag      = "tags"
+
+[markup]
+  [markup.highlight]
+    style              = "catppuccin-mocha"
+    lineNos            = false
+    lineNumbersInTable = false
+    noClasses          = false
+  [markup.goldmark.renderer]
+    unsafe = true
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel   = 3

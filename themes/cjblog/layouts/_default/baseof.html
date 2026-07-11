@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Locale | default "pt-BR" }}">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  {{/* ── Title ── */}}
+  <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} · {{ .Site.Title }}{{ end }}</title>
+
+  {{/* ── Meta básico ── */}}
+  <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
+  <meta name="author" content="{{ .Site.Params.author }}" />
+  <meta name="generator" content="Hugo {{ hugo.Version }}" />
+  {{ with .Site.Params.googleVerification }}
+  <meta name="google-site-verification" content="{{ . }}" />
+  {{ end }}
+
+  {{/* ── Canonical ── */}}
+  <link rel="canonical" href="{{ .Permalink }}" />
+
+  {{/* ── Open Graph ── */}}
+  {{ $ogImg := .Site.Params.ogImage }}
+  {{ with .Params.banner_image }}{{ $ogImg = printf "%s/images/%s" $.Site.BaseURL . }}{{ end }}
+  <meta property="og:site_name"   content="{{ .Site.Title }}" />
+  <meta property="og:title"       content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}" />
+  <meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
+  <meta property="og:url"         content="{{ .Permalink }}" />
+  <meta property="og:type"        content="{{ if .IsPage }}article{{ else }}website{{ end }}" />
+  <meta property="og:locale"      content="pt_BR" />
+  {{ with $ogImg }}<meta property="og:image" content="{{ . }}" />{{ end }}
+  {{ if .IsPage }}
+  <meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}" />
+  <meta property="article:modified_time"  content="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}" />
+  <meta property="article:author"         content="{{ .Site.Params.author }}" />
+  {{ range .Params.categories }}
+  <meta property="article:section" content="{{ . }}" />
+  {{ end }}
+  {{ range .Params.tags }}
+  <meta property="article:tag" content="{{ . }}" />
+  {{ end }}
+  {{ end }}
+
+  {{/* ── Twitter Card ── */}}
+  <meta name="twitter:card"        content="{{ if $ogImg }}summary_large_image{{ else }}summary{{ end }}" />
+  <meta name="twitter:site"        content="{{ .Site.Params.twitterSite }}" />
+  <meta name="twitter:title"       content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}" />
+  <meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
+  {{ with $ogImg }}<meta name="twitter:image" content="{{ . }}" />{{ end }}
+
+  {{/* ── RSS ── */}}
+  {{ range .AlternativeOutputFormats }}
+  <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink }}" title="{{ $.Site.Title }}" />
+  {{ end }}
+
+  {{/* ── JSON-LD ── */}}
+  {{ if .IsHome }}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": {{ .Site.Title | jsonify }},
+    "url": {{ .Site.BaseURL | jsonify }},
+    "description": {{ .Site.Params.description | jsonify }},
+    "author": {
+      "@type": "Person",
+      "name": {{ .Site.Params.author | jsonify }},
+      "url": {{ .Site.BaseURL | jsonify }},
+      "sameAs": [
+        {{ .Site.Params.social.github | jsonify }},
+        {{ .Site.Params.social.linkedin | jsonify }}
+      ]
+    }
+  }
+  </script>
+  {{ else if .IsPage }}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": {{ .Title | jsonify }},
+    "description": {{ with .Description }}{{ . | jsonify }}{{ else }}{{ .Site.Params.description | jsonify }}{{ end }},
+    "url": {{ .Permalink | jsonify }},
+    "datePublished": {{ .Date.Format "2006-01-02T15:04:05Z07:00" | jsonify }},
+    "dateModified": {{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" | jsonify }},
+    "author": {
+      "@type": "Person",
+      "name": {{ .Site.Params.author | jsonify }},
+      "url": {{ .Site.BaseURL | jsonify }}
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": {{ .Site.Params.author | jsonify }}
+    }{{ with $ogImg }},
+    "image": {{ . | jsonify }}{{ end }}
+  }
+  </script>
+  {{ end }}
+
+  {{/* ── Favicons ── */}}
+  <link rel="icon"             href="/favicon.svg" type="image/svg+xml" />
+  <link rel="alternate icon"   href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="/favicon.svg" />
+
+  {{/* ── Estilos ── */}}
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="/css/main.css" />
+
+  {{/* ── Analytics ── */}}
+  {{ $gaID := .Site.Config.Services.GoogleAnalytics.ID }}
+  {{ if and $gaID (not hugo.IsServer) }}
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ $gaID }}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '{{ $gaID }}');
+  </script>
+  {{ end }}
+</head>
+<body>
+  {{ partial "header.html" . }}
+  <main class="main-content" id="main-content">
+    {{ block "main" . }}{{ end }}
+  </main>
+  {{ partial "footer.html" . }}
+  <script src="/js/main.js" defer></script>
+</body>
+</html>

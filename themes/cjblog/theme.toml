@@ -1,0 +1,10 @@
+name = "cjblog"
+license = "MIT"
+licenselink = "https://opensource.org/licenses/MIT"
+description = "Tema pessoal do blog de Caique Oliveira"
+homepage = "https://caiquejh.com.br"
+tags = ["blog", "minimal", "catppuccin"]
+features = ["blog"]
+
+[author]
+  name = "Caique Oliveira"

@@ -1,0 +1,66 @@
+{{ define "main" }}
+<article class="post-layout container">
+
+  {{/* Banner */}}
+  {{ with .Params.banner_image }}
+  <div class="post__banner-wrap">
+    <img src="/images/{{ . }}" alt="{{ $.Title }}" class="post__banner" />
+  </div>
+  {{ end }}
+
+  {{/* Header */}}
+  <header class="post__header">
+    <div class="post__meta">
+      <time class="post__date" datetime="{{ .Date.Format "2006-01-02" }}">
+        {{ .Date.Format "02 de January de 2006" }}
+      </time>
+      <span class="post__reading-time">{{ .ReadingTime }} min de leitura</span>
+      {{ range .Params.categories }}
+      <a href="/categories/{{ . | urlize }}/" class="badge badge--mauve">{{ . }}</a>
+      {{ end }}
+    </div>
+    <h1 class="post__title">{{ .Title }}</h1>
+    {{ with .Description }}
+    <p class="post__description">{{ . }}</p>
+    {{ end }}
+  </header>
+
+  {{/* Content */}}
+  <div class="post__content">
+    {{ .Content }}
+  </div>
+
+  {{/* Footer */}}
+  <footer class="post__footer">
+    {{ with .Params.tags }}
+    <div class="post__tags">
+      {{ range . }}
+      <a href="/tags/{{ . | urlize }}/" class="post__tag">#{{ . }}</a>
+      {{ end }}
+    </div>
+    {{ end }}
+
+    <nav class="post__nav" aria-label="Navegação entre posts">
+      {{ with .PrevInSection }}
+      <a href="{{ .RelPermalink }}" class="post__nav-link post__nav-link--prev">
+        <span class="post__nav-label">← Post anterior</span>
+        <span class="post__nav-title">{{ .Title }}</span>
+      </a>
+      {{ else }}<div></div>{{ end }}
+
+      {{ with .NextInSection }}
+      <a href="{{ .RelPermalink }}" class="post__nav-link post__nav-link--next">
+        <span class="post__nav-label">Próximo post →</span>
+        <span class="post__nav-title">{{ .Title }}</span>
+      </a>
+      {{ end }}
+    </nav>
+  </footer>
+
+  {{/* Comments */}}
+  {{ if .Site.Params.disqus }}
+  {{ partial "disqus.html" . }}
+  {{ end }}
+
+</article>
+{{ end }}
