@@ -1,7 +1,7 @@
 {{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\" ?>" | safeHTML }}
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else if eq .Kind "taxonomy" }}{{ if eq .Data.Plural "tags" }}Tags{{ else }}Categorias{{ end }} · {{ .Site.Title }}{{ else }}{{ .Title }} · {{ .Site.Title }}{{ end }}</title>
+    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} · {{ .Site.Title }}{{ end }}</title>
     <link>{{ .Permalink }}</link>
     <description>{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}Últimas publicações · {{ .Site.Title }}{{ end }}</description>
     <generator>Hugo -- gohugo.io</generator>
