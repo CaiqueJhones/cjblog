@@ -45,7 +45,7 @@
           <a href="/categories/{{ . | urlize }}/" class="badge badge--mauve">{{ . }}</a>
           {{ end }}
         </div>
-        <h3 class="post-card__title">{{ .Title }}</h3>
+        <h3 class="post-card__title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
         <p class="post-card__desc">{{ .Description }}</p>
         <div class="post-card__footer">
           <a href="{{ .RelPermalink }}" class="post-card__read">
