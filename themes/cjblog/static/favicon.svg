@@ -1,20 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
-  <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#cba6f7"/>
-      <stop offset="100%" stop-color="#89b4fa"/>
-    </linearGradient>
-  </defs>
-  <!-- Fundo arredondado -->
+  <!-- Fundo arredondado (Catppuccin Mocha Base) -->
   <rect width="32" height="32" rx="8" fill="#1e1e2e"/>
-  <!-- Símbolo ✦ centralizado -->
-  <text
-    x="16"
-    y="22"
-    font-family="Georgia, serif"
-    font-size="20"
-    font-weight="bold"
-    text-anchor="middle"
-    fill="url(#bg)"
-  >✦</text>
+  <!-- Ícone de código </> nas cores de destaque do Catppuccin Mocha -->
+  <path d="M12 9 L6 16 L12 23" fill="none" stroke="#cba6f7" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M20 9 L26 16 L20 23" fill="none" stroke="#89b4fa" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M18 7 L14 25" fill="none" stroke="#a6e3a1" stroke-width="2.2" stroke-linecap="round"/>
 </svg>
