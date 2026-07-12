@@ -241,6 +241,42 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
 .btn--ghost { color: var(--fg-muted); }
 .btn--ghost:hover { color: var(--accent); }
 
+/* ---------- Back to top ---------- */
+.back-to-top {
+  position: fixed;
+  right: var(--s6);
+  bottom: var(--s6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--r-full);
+  background: var(--surface0);
+  border: 1px solid var(--border);
+  color: var(--fg-muted);
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity var(--t), transform var(--t), visibility 0s var(--t), background var(--t), border-color var(--t), color var(--t);
+  z-index: 90;
+}
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: opacity var(--t), transform var(--t), background var(--t), border-color var(--t), color var(--t);
+}
+.back-to-top:hover {
+  background: var(--surface1);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+@media (max-width: 640px) {
+  .back-to-top { right: var(--s4); bottom: var(--s4); }
+}
+
 /* ---------- Badges ---------- */
 .badge {
   display: inline-flex;

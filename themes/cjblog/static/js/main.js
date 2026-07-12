@@ -45,6 +45,20 @@
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 })();
 
+// Back to top
+(function () {
+  const btn = document.getElementById('backToTop');
+  if (!btn) return;
+
+  const toggle = () => btn.classList.toggle('visible', window.scrollY > 480);
+  toggle();
+  document.addEventListener('scroll', toggle, { passive: true });
+
+  btn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();
+
 // Active nav on scroll
 (function () {
   const sections = document.querySelectorAll('section[id]');
