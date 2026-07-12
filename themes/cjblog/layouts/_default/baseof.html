@@ -103,7 +103,9 @@
 
   {{/* ── Estilos ── */}}
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="stylesheet" href="/css/main.css" />
+  {{ $css := resources.Get "css/main.css" }}
+  {{ if hugo.IsProduction }}{{ $css = $css | minify | fingerprint }}{{ end }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}" {{ with $css.Data.Integrity }}integrity="{{ . }}"{{ end }} />
 
   {{/* ── Analytics ── */}}
   {{ $gaID := .Site.Config.Services.GoogleAnalytics.ID }}
@@ -123,6 +125,8 @@
     {{ block "main" . }}{{ end }}
   </main>
   {{ partial "footer.html" . }}
-  <script src="/js/main.js" defer></script>
+  {{ $js := resources.Get "js/main.js" }}
+  {{ if hugo.IsProduction }}{{ $js = $js | minify | fingerprint }}{{ end }}
+  <script src="{{ $js.RelPermalink }}" {{ with $js.Data.Integrity }}integrity="{{ . }}"{{ end }} defer></script>
 </body>
 </html>
