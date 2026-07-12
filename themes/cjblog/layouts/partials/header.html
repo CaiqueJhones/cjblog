@@ -1,7 +1,14 @@
 <header class="site-header">
   <nav class="nav">
     <a href="/" class="nav__brand">
-      <span class="nav__logo">✦</span>
+      <span class="nav__logo">
+        <svg viewBox="0 0 32 32" width="24" height="24" aria-hidden="true">
+          <rect width="32" height="32" rx="8" fill="#1e1e2e"/>
+          <path d="M12 9 L6 16 L12 23" fill="none" stroke="#cba6f7" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M20 9 L26 16 L20 23" fill="none" stroke="#89b4fa" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M18 7 L14 25" fill="none" stroke="#a6e3a1" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+      </span>
       {{ .Site.Params.author }}
     </a>
     <button class="nav__hamburger" id="navHamburger" aria-label="Abrir menu" aria-expanded="false">

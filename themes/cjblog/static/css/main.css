@@ -143,7 +143,8 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   letter-spacing: .3px;
   white-space: nowrap;
 }
-.nav__logo { font-size: 1.2rem; }
+.nav__logo { display: flex; }
+.nav__logo svg { border-radius: var(--r-sm); }
 
 .nav__links {
   display: flex;
