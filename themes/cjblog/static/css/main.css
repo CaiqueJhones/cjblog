@@ -878,10 +878,14 @@ button { font: inherit; cursor: pointer; border: none; background: none; }
   gap: var(--s4);
 }
 .footer__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
   font-weight: 700;
   font-size: .875rem;
   color: var(--accent);
 }
+.footer__brand svg { border-radius: var(--r-sm); }
 .footer__copy { font-size: .78rem; color: var(--fg-subtle); }
 .footer__copy a { color: var(--subtext0); }
 .footer__copy a:hover { color: var(--accent); }
