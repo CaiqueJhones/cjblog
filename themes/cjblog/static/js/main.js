@@ -6,22 +6,23 @@
   const links = document.getElementById('navLinks');
   if (!btn || !links) return;
 
-  btn.addEventListener('click', () => {
-    const open = links.classList.toggle('open');
+  const setOpen = open => {
+    links.classList.toggle('open', open);
     btn.setAttribute('aria-expanded', String(open));
+    document.documentElement.classList.toggle('nav-open', open);
+  };
+
+  btn.addEventListener('click', () => {
+    setOpen(!links.classList.contains('open'));
   });
 
   links.querySelectorAll('a').forEach(a =>
-    a.addEventListener('click', () => {
-      links.classList.remove('open');
-      btn.setAttribute('aria-expanded', 'false');
-    })
+    a.addEventListener('click', () => setOpen(false))
   );
 
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
-      links.classList.remove('open');
-      btn.setAttribute('aria-expanded', 'false');
+      setOpen(false);
     }
   });
 })();
