@@ -2,9 +2,9 @@
 <div class="container">
   <header class="page-header">
     <p class="page-header__eyebrow">
-      {{ if eq .Kind "taxonomy" }}Categoria{{ else if eq .Kind "term" }}{{ .Title }}{{ else }}Arquivo{{ end }}
+      {{ if eq .Kind "taxonomy" }}{{ if eq .Data.Plural "tags" }}Tag{{ else }}Categoria{{ end }}{{ else if eq .Kind "term" }}{{ .Title }}{{ else }}Arquivo{{ end }}
     </p>
-    <h1 class="page-header__title">{{ if eq .Kind "taxonomy" }}Categorias{{ else }}{{ .Title }}{{ end }}</h1>
+    <h1 class="page-header__title">{{ if eq .Kind "taxonomy" }}{{ if eq .Data.Plural "tags" }}Tags{{ else }}Categorias{{ end }}{{ else }}{{ .Title }}{{ end }}</h1>
     {{ with .Description }}<p class="page-header__desc">{{ . }}</p>{{ end }}
   </header>
 
