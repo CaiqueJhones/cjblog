@@ -23,40 +23,14 @@
 <div class="section container">
   <div class="section__header">
     <h2 class="section__title">Posts recentes</h2>
-    {{ if gt (len $posts) 3 }}
+    {{ if gt (len $posts) 4 }}
     <a href="/blog/" class="section__link">Ver todos →</a>
     {{ end }}
   </div>
 
   <div class="posts-grid">
-    {{ range first 3 $posts }}
-    <article class="post-card reveal">
-      {{ with .Params.banner_image }}
-      <img src="/images/{{ . }}" alt="{{ $.Title }}" class="post-card__banner" loading="lazy" />
-      {{ else }}
-      <div class="post-card__banner-placeholder"></div>
-      {{ end }}
-      <div class="post-card__body">
-        <div class="post-card__meta">
-          <time class="post-card__date" datetime="{{ .Date.Format "2006-01-02" }}">
-            {{ .Date.Format "02 Jan 2006" }}
-          </time>
-          {{ range .Params.categories }}
-          <a href="/categories/{{ . | urlize }}/" class="badge badge--mauve">{{ . }}</a>
-          {{ end }}
-        </div>
-        <h3 class="post-card__title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-        <p class="post-card__desc">{{ .Description }}</p>
-        <div class="post-card__footer">
-          <a href="{{ .RelPermalink }}" class="post-card__read">
-            Ler artigo <span aria-hidden="true">→</span>
-          </a>
-          {{ with .ReadingTime }}
-          <span style="font-size:.72rem;color:var(--fg-subtle);font-family:var(--font-mono)">{{ . }} min</span>
-          {{ end }}
-        </div>
-      </div>
-    </article>
+    {{ range first 4 $posts }}
+    {{ partial "post-card.html" (dict "page" . "headingLevel" "h3") }}
     {{ end }}
   </div>
 </div>

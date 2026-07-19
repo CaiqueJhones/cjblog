@@ -1,0 +1,40 @@
+{{- $page := .page -}}
+{{- $headingTag := .headingLevel | default "h2" -}}
+<article class="post-card reveal">
+  {{ with $page.Params.banner_image }}
+  {{ $thumb := resources.Get (printf "images/%s" .) }}
+  {{ if $thumb }}
+  {{ $w := $thumb.Width }}
+  {{ if gt $w 800 }}{{ $w = 800 }}{{ end }}
+  {{ $display := $thumb.Resize (printf "%dx webp q75" $w) }}
+  <img src="{{ $display.RelPermalink }}" width="{{ $display.Width }}" height="{{ $display.Height }}"
+       alt="{{ $page.Title }}" class="post-card__banner" loading="lazy" decoding="async" />
+  {{ else }}
+  <img src="/images/{{ . }}" alt="{{ $page.Title }}" class="post-card__banner" loading="lazy" />
+  {{ end }}
+  {{ else }}
+  <div class="post-card__banner-placeholder"></div>
+  {{ end }}
+  <div class="post-card__body">
+    <div class="post-card__meta">
+      <time class="post-card__date" datetime="{{ $page.Date.Format "2006-01-02" }}">
+        {{ $page.Date.Format "02 Jan 2006" }}
+      </time>
+      {{ range $page.Params.categories }}
+      <a href="/categories/{{ . | urlize }}/" class="badge badge--mauve">{{ . }}</a>
+      {{ end }}
+    </div>
+    {{ if eq $headingTag "h3" }}
+    <h3 class="post-card__title"><a href="{{ $page.RelPermalink }}">{{ $page.Title }}</a></h3>
+    {{ else }}
+    <h2 class="post-card__title"><a href="{{ $page.RelPermalink }}">{{ $page.Title }}</a></h2>
+    {{ end }}
+    <p class="post-card__desc">{{ $page.Description }}</p>
+    <div class="post-card__footer">
+      <a href="{{ $page.RelPermalink }}" class="post-card__read">Ler artigo →</a>
+      {{ with $page.ReadingTime }}
+      <span style="font-size:.72rem;color:var(--fg-subtle);font-family:var(--font-mono)">{{ . }} min</span>
+      {{ end }}
+    </div>
+  </div>
+</article>

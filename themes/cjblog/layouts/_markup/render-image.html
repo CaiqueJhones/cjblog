@@ -1,0 +1,18 @@
+{{- $destination := .Destination -}}
+{{- $img := "" -}}
+{{- if not (strings.HasPrefix $destination "http") -}}
+  {{- $img = resources.Get (strings.TrimPrefix "/" $destination) -}}
+{{- end -}}
+{{- if $img -}}
+  {{- $maxWidth := 1200 -}}
+  {{- $w := $img.Width -}}
+  {{- if gt $w $maxWidth }}{{ $w = $maxWidth }}{{ end -}}
+  {{- $display := $img.Resize (printf "%dx webp q78" $w) -}}
+  <img src="{{ $display.RelPermalink }}"
+       width="{{ $display.Width }}" height="{{ $display.Height }}"
+       alt="{{ .Text }}"{{ with .Title }} title="{{ . }}"{{ end }}
+       loading="lazy" decoding="async"
+       data-full="{{ $img.RelPermalink }}">
+{{- else -}}
+  <img src="{{ $destination }}" alt="{{ .Text }}"{{ with .Title }} title="{{ . }}"{{ end }} loading="lazy" decoding="async">
+{{- end -}}

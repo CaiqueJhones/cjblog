@@ -3,8 +3,17 @@
 
   {{/* Banner */}}
   {{ with .Params.banner_image }}
+  {{ $banner := resources.Get (printf "images/%s" .) }}
   <div class="post__banner-wrap">
+    {{ if $banner }}
+    {{ $w := $banner.Width }}
+    {{ if gt $w 1600 }}{{ $w = 1600 }}{{ end }}
+    {{ $display := $banner.Resize (printf "%dx webp q78" $w) }}
+    <img src="{{ $display.RelPermalink }}" width="{{ $display.Width }}" height="{{ $display.Height }}"
+         alt="{{ $.Title }}" class="post__banner" loading="eager" decoding="async" />
+    {{ else }}
     <img src="/images/{{ . }}" alt="{{ $.Title }}" class="post__banner" />
+    {{ end }}
   </div>
   {{ end }}
 
