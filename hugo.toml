@@ -1,4 +1,5 @@
 baseURL = "https://caiquejh.com.br/"
+languageCode = "pt-BR"
 locale = "pt-BR"
 title = "Caique Oliveira Blog"
 theme = "cjblog"

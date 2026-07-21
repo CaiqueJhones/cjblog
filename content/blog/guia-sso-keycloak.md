@@ -1,7 +1,7 @@
 ---
 title: "Guia de SSO com Keycloak: OIDC, OAuth2, Autenticação Customizada, 2FA e Spring Boot"
 slug: guia-sso-keycloak
-date: 2026-07-17
+date: 2026-07-20
 banner_image: keycloak-sso-guia.png
 description: Um guia abrangente sobre Single Sign-On com Keycloak, cobrindo OAuth2, OIDC, os principais conceitos do Keycloak (realm, client, users, roles), temas customizados, fluxos de autenticação e 2FA próprios, event listener com Kafka, integração com Spring Boot, sessão com Redis, autorização com roles/mappers e políticas de senha.
 categories:

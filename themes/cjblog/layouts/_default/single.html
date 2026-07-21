@@ -20,8 +20,9 @@
   {{/* Header */}}
   <header class="post__header">
     <div class="post__meta">
+      {{ $months := slice "janeiro" "fevereiro" "março" "abril" "maio" "junho" "julho" "agosto" "setembro" "outubro" "novembro" "dezembro" }}
       <time class="post__date" datetime="{{ .Date.Format "2006-01-02" }}">
-        {{ .Date.Format "02 de January de 2006" }}
+        {{ printf "%02d de %s de %d" .Date.Day (index $months (sub (int .Date.Month) 1)) .Date.Year }}
       </time>
       <span class="post__reading-time">{{ .ReadingTime }} min de leitura</span>
       {{ range .Params.categories }}
