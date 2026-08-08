@@ -7,8 +7,6 @@ description: Como rodar múltiplas versões da mesma aplicação no Kubernetes e
 categories:
   - Kubernetes
   - DevOps
-meta_description: Como rodar múltiplas versões da mesma aplicação no Kubernetes e controlar a distribuição de tráfego entre elas usando o Consul Service Mesh, com Service Router, Service Splitter e Service Resolver.
-browser_title: Múltiplos Deployments com Consul Service Mesh!
 comments: true
 ---
 

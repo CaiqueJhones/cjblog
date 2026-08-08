@@ -7,8 +7,6 @@ description: Um review técnico do Collections Framework no Java 25, com os inte
 categories:
   - Java
   - Tutoriais
-meta_description: Guia técnico das Collections do Java 25, com internals de List, Set, Queue, Deque, Map e coleções concorrentes, complexidade Big-O e critérios práticos de escolha.
-browser_title: Collections no Java 25!
 comments: true
 ---
 

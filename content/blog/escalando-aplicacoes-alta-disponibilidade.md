@@ -7,8 +7,6 @@ description: Um guia prático sobre escala vertical e horizontal, alta disponibi
 categories:
   - Arquitetura
   - DevOps
-meta_description: Escala vertical vs horizontal, alta disponibilidade, multi-AZ e multi-region na teoria, com laboratório prático em Spring Boot, Java 25, Postgres, Cassandra, Redis, Kafka, Kubernetes e AWS.
-browser_title: Escalando aplicações!
 comments: true
 ---
 

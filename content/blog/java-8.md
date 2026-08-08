@@ -6,8 +6,6 @@ description: Neste artigo veremos aspectos importantes da linguagem de programa�
 categories:
 - Java
 - Tutoriais
-meta_description: Neste artigo veremos aspectos importantes da linguagem de programação Java a partir da versão 8.
-browser_title: Java 8!
 comments: true
 ---
 

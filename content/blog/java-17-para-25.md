@@ -7,8 +7,6 @@ description: Um mapa prático das mudanças entre Java 17 LTS (2021) e Java 25 L
 categories:
 - Java
 - Tutoriais
-meta_description: Um mapa prático das mudanças entre Java 17 LTS (2021) e Java 25 LTS (2025), com laboratórios reais rodáveis para cada JEP relevante.
-browser_title: Java 17 para 25!
 comments: true
 ---
 

@@ -7,8 +7,6 @@ description: Na carreira de desenvolvedor, seja back-end ou front-end, não é m
 categories:
 - Java
 - Tutoriais
-meta_description: Na carreira de desenvolvedor, seja back-end ou front-end, não é muito comum a utilização de operadores bit a bit, porém conhecê-los é parte importante para a resolução de muitos problemas. Neste artigo conheceremos o conceito e avaliaremos uma aplicação prática.
-browser_title: Operadores bit a bit!
 comments: true
 ---
 

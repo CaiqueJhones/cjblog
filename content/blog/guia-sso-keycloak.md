@@ -7,8 +7,6 @@ description: Um guia abrangente sobre Single Sign-On com Keycloak, cobrindo OAut
 categories:
   - Segurança
   - Java
-meta_description: Guia sobre SSO, OAuth2, OIDC e Keycloak, com exemplos práticos de tema customizado, autenticação e 2FA próprios, event listener com Kafka, integração com Spring Boot e políticas de senha.
-browser_title: Guia de SSO com Keycloak!
 comments: true
 ---
 
