@@ -1,7 +1,4 @@
 User-agent: *
 Allow: /
 
-Disallow: /tags/
-Disallow: /categories/
-
 Sitemap: {{ .Site.BaseURL }}sitemap.xml

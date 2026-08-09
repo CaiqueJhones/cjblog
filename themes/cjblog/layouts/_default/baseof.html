@@ -9,6 +9,9 @@
 
   {{/* ── Meta básico ── */}}
   <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
+  {{ if or (eq .Kind "taxonomy") (eq .Kind "term") }}
+  <meta name="robots" content="noindex, follow" />
+  {{ end }}
   <meta name="author" content="{{ .Site.Params.author }}" />
   <meta name="generator" content="Hugo {{ hugo.Version }}" />
   {{ with .Site.Params.googleVerification }}
