@@ -20,14 +20,21 @@
 
   {{/* ── Open Graph ── */}}
   {{ $ogImg := .Site.Params.ogImage }}
-  {{ with .Params.banner_image }}{{ $ogImg = printf "%s/images/%s" $.Site.BaseURL . }}{{ end }}
+  {{ with .Params.banner_image }}{{ $ogImg = urls.JoinPath $.Site.BaseURL "images" . }}{{ end }}
   <meta property="og:site_name"   content="{{ .Site.Title }}" />
   <meta property="og:title"       content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}" />
   <meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
   <meta property="og:url"         content="{{ .Permalink }}" />
   <meta property="og:type"        content="{{ if .IsPage }}article{{ else }}website{{ end }}" />
   <meta property="og:locale"      content="pt_BR" />
-  {{ with $ogImg }}<meta property="og:image" content="{{ . }}" />{{ end }}
+  {{ with $ogImg }}
+  <meta property="og:image" content="{{ . }}" />
+  {{ if not $.Params.banner_image }}
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  {{ end }}
+  <meta property="og:image:alt" content="{{ if $.IsHome }}{{ $.Site.Title }}{{ else }}{{ $.Title }}{{ end }}" />
+  {{ end }}
   {{ if .IsPage }}
   <meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}" />
   <meta property="article:modified_time"  content="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}" />
@@ -45,7 +52,10 @@
   <meta name="twitter:site"        content="{{ .Site.Params.twitterSite }}" />
   <meta name="twitter:title"       content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}" />
   <meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
-  {{ with $ogImg }}<meta name="twitter:image" content="{{ . }}" />{{ end }}
+  {{ with $ogImg }}
+  <meta name="twitter:image" content="{{ . }}" />
+  <meta name="twitter:image:alt" content="{{ if $.IsHome }}{{ $.Site.Title }}{{ else }}{{ $.Title }}{{ end }}" />
+  {{ end }}
 
   {{/* ── RSS ── */}}
   {{ range .AlternativeOutputFormats }}
