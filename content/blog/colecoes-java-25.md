@@ -178,7 +178,7 @@ O próprio JDK usa esse princípio internamente: o `ScheduledThreadPoolExecutor`
 
 Se há uma implementação que vale a pena entender de verdade, é o `HashMap`. Por dentro, ele é um array de buckets, as posições onde as entradas ficam guardadas (`Node<K,V>[] table`). A posição de uma chave nesse array vem do hash dela, espalhado por uma função extra (`h ^ (h >>> 16)`) que mistura os bits altos com os baixos, reduzindo colisão quando o `hashCode()` original é fraco. Quando duas chaves caem no mesmo bucket, elas viram uma lista encadeada.
 
-Um detalhe importante: se um bucket específico acumula 8 ou mais colisões **e** a tabela inteira já tem pelo menos 64 posições, esse bucket deixa de ser lista encadeada e vira uma árvore rubro-negra. Busca num bucket treeificado cai de O(n) pra O(log n). É uma proteção contra o pior caso: alguém forçando colisões de propósito, ou um `hashCode()` mal implementado que sempre devolve a mesma constante. Não é o caminho normal: na maioria dos `HashMap` do dia a dia, os buckets nunca chegam perto disso.
+Um detalhe importante: se um bucket específico acumula 8 ou mais colisões **e** a tabela inteira já tem pelo menos 64 posições, esse bucket deixa de ser lista encadeada e vira uma árvore rubro-negra. Busca num bucket convertido em árvore cai de O(n) pra O(log n). É uma proteção contra o pior caso: alguém forçando colisões de propósito, ou um `hashCode()` mal implementado que sempre devolve a mesma constante. Não é o caminho normal: na maioria dos `HashMap` do dia a dia, os buckets nunca chegam perto disso.
 
 ```goat
 table (array de buckets)
@@ -365,7 +365,7 @@ Complexidade amortizada/esperada pras operações mais comuns, sem benchmarks re
 
 ## <a name="consideracoes-finais">Considerações finais</a>
 
-Se você tirar uma coisa só deste post: os defaults do dia a dia continuam sendo os defaults certos. `ArrayList` pra lista, `HashMap` pra mapa, `ArrayDeque` pra pilha ou fila. Eles são O(1) amortizado ou perto disso pra praticamente tudo que a maioria dos programas faz, e o JDK já cuida dos casos ruins por baixo, treeificação de bucket, resize amortizado, sem você precisar pensar nisso.
+Se você tirar uma coisa só deste post: os defaults do dia a dia continuam sendo os defaults certos. `ArrayList` pra lista, `HashMap` pra mapa, `ArrayDeque` pra pilha ou fila. Eles são O(1) amortizado ou perto disso pra praticamente tudo que a maioria dos programas faz, e o JDK já cuida dos casos ruins por baixo, conversão de bucket em árvore, resize amortizado, sem você precisar pensar nisso.
 
 As implementações ordenadas (`TreeSet`, `TreeMap`, `LinkedHashSet`, `LinkedHashMap`) valem a pena no momento em que a ordem vira parte do contrato do seu código, não antes. Trocar `HashMap` por `TreeMap` só porque "ordenado parece mais seguro" custa O(log n) em vez de O(1) sem necessidade nenhuma.
 
